@@ -138,8 +138,6 @@ function initializeMobileNavbar() {
         })
     });
 
-
-
     currentMenu = menuContent;
     currentNavbarMenu = menuContent;
     currentMenuBtn = menuBtn;
@@ -200,6 +198,7 @@ const tabletQuery = window.matchMedia("(min-width: 48em)");
 tabletQuery.addEventListener("change", event => {
     toggleMobileFooter();
     toggleMobileNavbar();
+    toggleNavigateUpMobileBtn();
 });
 
 function toggleMobileFooter() {
@@ -241,8 +240,7 @@ function removeMobileFooterLinks() {
     mobileLists.classList.remove("footer-links-lists-mobile");
     mobileLists.classList.add("footer-links-lists");
 
-    mobileLists.querySelectorAll(".footer-list-divider").forEach(divider => { divider.remove(); })
-    console.log(listArray);
+    mobileLists.querySelectorAll(".footer-list-divider").forEach(divider => { divider.remove(); });
     listArray.forEach(list => {
         const expandoBtn = list.querySelector(".expando-list-btn");
         const heading = list.querySelector("h3");
@@ -343,7 +341,7 @@ const togglePreviousButtonDebounced = debounce(togglePreviousButton, 50);
 const toggleNextButtonDebounced = debounce(toggleNextButton, 50);
 
 function toggleNextButton(element, btn) {
-    if(isElementAtScrollEnd(element)) {
+    if(isElementAtScrollEndHorizontal(element)) {
         btn.classList.add("transparent");
         btn.classList.add("hidden");
     } else {
@@ -355,7 +353,7 @@ function toggleNextButton(element, btn) {
 }
 
 function togglePreviousButton(element, btn) {
-    if(isElementAtScrollBegin(element)) {
+    if(isElementAtScrollBeginHorizontal(element)) {
         btn.classList.add("transparent");
         btn.classList.add("hidden");
     } else {
@@ -374,14 +372,25 @@ carouselList.addEventListener("scroll", event => {
     toggleNextButtonDebounced(carouselList, nextBtn);
 });
 
-function isElementAtScrollBegin(element) {
+function isElementAtScrollBeginHorizontal(element) {
     return (element.clientWidth === element.scrollWidth) || (element.scrollLeft === 0);
 }
 
-function isElementAtScrollEnd(element) {
+function isElementAtScrollBeginVertical(element) {
+    return (element.clientHeight === element.scrollHeight) || (element.scrollTop === 0);
+}
+
+function isElementAtScrollEndHorizontal(element) {
     //TODO: Think about this harder
     return Math.abs(Math.floor(element.scrollWidth - element.scrollLeft - element.clientWidth)) <= 1;
+}
 
+function isElementAtScrollEndVertical(element) {
+    return Math.abs(Math.floor(element.scrollHeight - element.scrollTop - element.clientHeight)) <= 1;
+}
+
+function isScrollCleared(scrollElement, heightToClear) {
+    return scrollElement.scrollTop > heightToClear;
 }
 
 function debounce(func, timeout = 300) {
@@ -401,13 +410,11 @@ const searchSvg = document.querySelector(".search-svg");
 
 searchInput.addEventListener("focus", event => {
     searchSvg.classList.add("active-svg");
-})
+});
 
 searchInput.addEventListener("blur", event => {
     searchSvg.classList.remove("active-svg");
-})
-
-
+});
 
 searchBtn.addEventListener("click", event => {
     event.preventDefault();
@@ -420,3 +427,80 @@ searchBtn.addEventListener("focus", event => {
 searchBtn.addEventListener("blur", event => {
     searchSvg.classList.remove("active-svg");
 });
+
+/* 'Go to top' buttons */
+
+function isElementHidden(element) {
+    return element.classList.contains("hidden");
+}
+
+function showElement(element) {
+    element.classList.remove("hidden");
+    element.classList.remove("transparent");
+}
+
+function hideElement(element) {
+    element.classList.add("hidden");
+    element.classList.add("transparent");
+}
+
+const navigateUpBtnMobileHTML = document.querySelector(".navigate-top-btn-mobile").outerHTML;
+const navigateUpBtnHTML = `<a class="navigate-top-btn btn btn-transparent btn-rounded btn-padded" href="#main-content">Go to top</a>`;
+
+const toggleNavigateUpBtnMobile = debounce(() => {
+    const heightToClear = document.querySelector(".navbar").clientHeight;
+    const navigateUpBtnMobile = document.querySelector(".navigate-top-btn-mobile");
+
+    if (!isScrollCleared(document.documentElement, heightToClear)) {
+        if (!isElementHidden(navigateUpBtnMobile)) {
+            hideElement(navigateUpBtnMobile);
+        }  
+    } else {
+        if (isElementHidden(navigateUpBtnMobile)) {
+            showElement(navigateUpBtnMobile);
+        }  
+    }
+
+}, 50);
+
+function toggleNavigateUpMobileBtn() {
+    if (tabletQuery.matches) {
+        removeNavigateUpBtnMobile();
+    } else {
+        addNavigateUpBtnMobile();
+    }
+}
+
+function initializeNavigateUpMobileBtn() {
+    if (tabletQuery.matches) {
+        removeNavigateUpBtnMobile();
+    } else {
+        window.addEventListener("scroll", toggleNavigateUpBtnMobile);
+    }
+}
+
+function removeNavigateUpBtnMobile() {
+    const headingContainers = document.querySelectorAll(".section-heading-container");
+    const navigateUpBtnMobile = document.querySelector(".navigate-top-btn-mobile");
+
+    navigateUpBtnMobile.remove();
+    headingContainers.forEach(containers => {
+        containers.insertAdjacentHTML("beforeend", navigateUpBtnHTML);
+    });
+
+    window.removeEventListener("scroll", toggleNavigateUpBtnMobile);
+}
+
+function addNavigateUpBtnMobile() {
+    const mainElement = document.querySelector("#main-content");
+    const headingContainersBtns = document.querySelectorAll(".section-heading-container .navigate-top-btn");
+
+    mainElement.insertAdjacentHTML("beforeend", navigateUpBtnMobileHTML);
+    headingContainersBtns.forEach(btn => {
+        btn.remove();
+    });
+
+    window.addEventListener("scroll", toggleNavigateUpBtnMobile);
+}
+
+initializeNavigateUpMobileBtn();

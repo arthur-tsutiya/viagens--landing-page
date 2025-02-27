@@ -134,14 +134,31 @@ main {
     width: 100%;
 }
 
-/* Map */
+/* "Navigate to top" button */
 
-#map {
-    max-height: 40em;
-    height: auto;
-    aspect-ratio: 3/2;
-    width: 90%;
-    margin: 0 auto;
+.navigate-top-btn-mobile {
+    position: fixed;
+    right: 3em;
+    bottom: 3em;
+    z-index: 2;
+    background-color: var(--font-color-lightest);
+    transition: all var(--transition-delay) linear;
+
+    opacity: .5;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.arrow-up {
+    height: 18px;
+    width: 18px;
+    fill: #fff;
+}
+
+.navigate-top-btn-mobile:hover {
+    opacity: 1;
 }
 
 /* Modal box */
@@ -229,6 +246,10 @@ main {
 
 .btn-padded {
     padding: var(--padding-btn-large)
+}
+
+.btn-padded-larger {
+    padding: var(--padding-btn-xlarge);
 }
 
 .btn-rounded {
@@ -905,6 +926,10 @@ legend {
 
 .opaque {
     opacity: 1;
+}
+
+.semitransparent {
+    opacity: .5;
 }
 
 .transparent {
