@@ -286,6 +286,8 @@ function removeMobileNavbar() {
     const menuItems = navbarLinks.querySelectorAll(".menu-item");
     menuItems.forEach(item => {
         item.classList.remove("menu-item");
+        item.classList.remove("button-transparent-contrast");
+        item.classList.add("button-transparent");
     })
 
     const divider = navbarMenu.querySelector(".menu-divider");
@@ -293,6 +295,8 @@ function removeMobileNavbar() {
 
     const languageBtn = navbarMenu.querySelector(".language-selector");
     languageBtn.classList.add("language-selector-nav");
+    languageBtn.classList.remove("button-transparent-contrast");
+    languageBtn.classList.add("button-transparent");
 
     const languageTxt = languageBtn.querySelector(".language-selector-text");
     languageTxt.classList.add("language-selector-text-hidden");

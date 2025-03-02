@@ -15,12 +15,12 @@
     --padding-btn-normal: .75em;
     --padding-btn-small: .5em;
     --padding-btn-xsmall: .25em;
-    --btn-bg-1: #3330;
-    --btn-bg-2: #3332;
-    --btn-bg-3: #3334;
-    --btn-bg-4: #3336;
-    --btn-bg-5: #3338;
-    --btn-bg-6: #333a;
+    --transparent: #0000;
+    --btn-bg-1: #3f3f3f18;
+    --btn-bg-2: #3f3f3f30;
+    --btn-bg-3: #3f3f3f48;
+    --btn-bg-4: #3f3f3f60;
+    --btn-bg-5: #3f3f3f78;
     --font-color: #41414f;
     --font-color-light: #5f5f6f;
     --font-color-lighter: #727272;
@@ -94,15 +94,15 @@ h3 {
     font-size: 1.25em;
 }
 
-.large-heading {
+.heading-large {
     font-size: clamp(2em, 10vw ,3em);
 }
 
-.small-heading {
+.heading-small {
     font-size: 1.1em;
 }
 
-.smaller-heading {
+.heading-smaller {
     font-size: 1em;
 }
 
@@ -138,7 +138,7 @@ main {
 
 .navigate-top-btn-mobile {
     position: fixed;
-    right: 3em;
+    right: calc(5vw + 1em);
     bottom: 3em;
     z-index: 2;
     background-color: var(--font-color-lightest);
@@ -158,6 +158,10 @@ main {
 }
 
 .navigate-top-btn-mobile:hover {
+    opacity: .75;
+}
+
+.navigate-top-btn-mobile:active {
     opacity: 1;
 }
 
@@ -262,15 +266,54 @@ main {
 
 .btn-transparent {
     transition: background-color 200ms;
-    background-color: var(--btn-bg-1);
+    background-color: var(--transparent);
 }
 
 .btn-transparent:hover {
-    background-color: var(--btn-bg-2);
+    background-color: var(--btn-bg-1);
 }
 
 .btn-transparent:active {
+    background-color: var(--btn-bg-2);
+}
+
+.btn-semitransparent {
+    transition: background-color 200ms;
+    background-color: var(--btn-bg-1);
+}
+
+.btn-semitransparent:hover {
+    background-color: var(--btn-bg-2);
+}
+
+.btn-semitransparent:active {
     background-color: var(--btn-bg-3);
+}
+
+.btn-transparent-contrast {
+    transition: background-color 200ms;
+    background-color: var(--transparent);
+}
+
+.btn-transparent-contrast:hover {
+    background-color: var(--btn-bg-3);
+}
+
+.btn-transparent-contrast:active {
+    background-color: var(--btn-bg-5);
+}
+
+.btn-semitransparent-contrast {
+    transition: background-color 200ms;
+    background-color: var(--btn-bg-2);
+}
+
+.btn-semitransparent-contrast:hover {
+    background-color: var(--btn-bg-4);
+}
+
+.btn-semitransparent-contrast:active {
+    background-color: var(--btn-bg-5);
 }
 
 .btn-filled {
@@ -289,7 +332,7 @@ main {
 
 .close-modal-btn {
     flex: 0;
-    padding-block: var(--padding-btn-xsmall);
+    padding-block: var(--padding-btn-small);
 }
 
 /* Navbar */
@@ -345,18 +388,7 @@ main {
     color: #fff;
 
     white-space: nowrap;
-    background-color: var(--btn-bg-1);
-
-    /*font-family: var(--font-family-heading);*/
     font-weight: bold;
-}
-
-.navbar a:hover {
-    background-color: var(--btn-bg-2);
-}
-
-.navbar a:active {
-    background-color: var(--btn-bg-3);
 }
 
 .navbar-logo {
@@ -832,8 +864,8 @@ footer {
 }
 
 .search-svg {
-    height: 16px;
-    width: 16px;
+    height: 18px;
+    width: 18px;
     fill: var(--font-color-lightest);
     transition: all 200ms;
 }
@@ -910,6 +942,41 @@ legend {
     margin-left: auto;
 }
 
+/* MeetUs - Agency locations */
+
+#agencies-list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    
+}
+
+#agencies-list li {
+    flex-grow: 0;
+    flex-shrink: 1;
+    display: flex;
+    flex-direction: column;
+    max-width: 20em;
+
+    border-radius: 1em;
+    padding-bottom: var(--padding-btn-small);
+    overflow: clip;
+
+    box-shadow: 0px 0px 6px 2px #9995;
+}
+
+#agencies-list img {
+    width: 100%;
+}
+
+.agency-content {
+    padding: 1em .5em;
+    display:flex;
+    flex-direction: column;
+    gap: .5em;
+}
+
 /* General states */
 
 .hidden {
@@ -926,6 +993,10 @@ legend {
 
 .opaque {
     opacity: 1;
+}
+
+.quasi-opaque {
+    opacity: .75;
 }
 
 .semitransparent {

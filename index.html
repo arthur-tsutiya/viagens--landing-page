@@ -23,12 +23,12 @@
                     </button>
                     <div class="menu-content">
                         <ul class="navbar-links-mobile">
-                            <li><a class="navbar-link menu-item" href="#trip-me">Trip Me</a></li>
-                            <li><a class="navbar-link menu-item" href="#meet-us">Meet Us</a></li>
-                            <li><a class="navbar-link menu-item" href="#advice">Advice</a></li>
+                            <li><a class="navbar-link menu-item btn-transparent-contrast" href="#trip-me">Trip Me</a></li>
+                            <li><a class="navbar-link menu-item btn-transparent-contrast" href="#meet-us">Meet Us</a></li>
+                            <li><a class="navbar-link menu-item btn-transparent-contrast" href="#advice">Advice</a></li>
                         </ul>
                         <hr class="menu-divider">
-                        <button class="language-selector btn-transparent btn btn-rounded btn-padded menu-item">
+                        <button class="language-selector btn-transparent-contrast btn btn-rounded btn-padded menu-item">
                             <img class="circular-flag" src="./img/flags/placeholder40x40.png" alt="placeholder" height="25" width="25">
                             <span class="language-selector-text">Language</span>
                         </button>
@@ -52,7 +52,7 @@
                     sizes= "100vw"
                             >
                 <div class="hero-section-content container">
-                    <h1 class="hero-section-heading large-heading" data-i18n="hero-heading">Find your next travel destination with Travel.</h1>
+                    <h1 class="hero-section-heading heading-large" data-i18n="hero-heading">Find your next travel destination with Travel.</h1>
                 </div>
                 <span class="img-credit text-small">Photo by <a target="_blank" href="https://www.pexels.com/photo/high-angle-photography-of-village-280221/">Pixabay</a> on <a target="_blank" href="https://www.pexels.com/">Pexels</a></span>
             </section>
@@ -220,7 +220,17 @@
                         <h2 class="section-heading">MeetUs</h2>
                     </div>
                     <p>Want to meet us personally? </p>
-                    WIP
+                    <ul id="agencies-list">
+                        <li>
+                            <img src="./img/office-1.jpg" alt="placeholder">
+                            <div class="agency-content">
+                                <h3 class="heading-smaller">Physical agency #1</h3>
+                                <span class="agency-location">Ficticious Location</span>
+                                <span class="agency-hours">08:00 - 18:00</span>
+                                <button class="btn btn-semitransparent btn-padded btn-rounded">Schedule an appointment</button>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
             </section>
             <section id="advice" class="main-section">
@@ -243,7 +253,7 @@
                     <section class="footer-links-lists-mobile">
                         <div class="footer-links-list">
                             <button class="btn expando-list-btn">
-                                <h3 class="smaller-heading">About</h3>
+                                <h3 class="heading-smaller">About</h3>
                                 <svg class="small-arrow" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 84 51">
                                     <path fill="#555" d="M 8.8655158,0 C 7.5635445,-3.4648209e-7 6.2613056,0.49891153 5.2636681,1.496549 l -3.767212,3.767212 c -1.99527484,1.9952749 -1.99527484,5.207903 2e-7,7.203178 l 33.0227937,33.022794 3.767211,3.76721 c 1.122341,1.122341 2.629788,1.613588 4.089151,1.47329 1.135067,-0.109112 2.241089,-0.600361 3.114022,-1.473294 l 3.767212,-3.767212 33.02279,-33.02279 c 1.995275,-1.995275 1.995276,-5.2079026 5e-6,-7.2031741 L 78.51243,1.4965526 c -1.995278,-1.99527858 -5.207905,-1.99527788 -7.20318,-2.9e-6 L 41.88779,30.91801 12.466846,1.4965491 C 11.469209,0.49891195 10.167486,-3.889085e-7 8.8655158,0 Z">
                                 </svg>
@@ -258,7 +268,7 @@
                         <hr class="footer-list-divider">
                         <div class="footer-links-list">
                             <button class="btn expando-list-btn">
-                                <h3 class="smaller-heading">Support</h3>
+                                <h3 class="heading-smaller">Support</h3>
                                 <svg class="small-arrow" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 84 51">
                                     <path fill="#555" d="M 8.8655158,0 C 7.5635445,-3.4648209e-7 6.2613056,0.49891153 5.2636681,1.496549 l -3.767212,3.767212 c -1.99527484,1.9952749 -1.99527484,5.207903 2e-7,7.203178 l 33.0227937,33.022794 3.767211,3.76721 c 1.122341,1.122341 2.629788,1.613588 4.089151,1.47329 1.135067,-0.109112 2.241089,-0.600361 3.114022,-1.473294 l 3.767212,-3.767212 33.02279,-33.02279 c 1.995275,-1.995275 1.995276,-5.2079026 5e-6,-7.2031741 L 78.51243,1.4965526 c -1.995278,-1.99527858 -5.207905,-1.99527788 -7.20318,-2.9e-6 L 41.88779,30.91801 12.466846,1.4965491 C 11.469209,0.49891195 10.167486,-3.889085e-7 8.8655158,0 Z">
                                 </svg>
@@ -273,7 +283,7 @@
                         <hr class="footer-list-divider">
                         <div class="footer-links-list">
                             <button class="btn expando-list-btn">
-                                <h3 class="smaller-heading">Terms and Conditions</h3>
+                                <h3 class="heading-smaller">Terms and Conditions</h3>
                                 <svg class="small-arrow" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 84 51">
                                     <path fill="#555" d="M 8.8655158,0 C 7.5635445,-3.4648209e-7 6.2613056,0.49891153 5.2636681,1.496549 l -3.767212,3.767212 c -1.99527484,1.9952749 -1.99527484,5.207903 2e-7,7.203178 l 33.0227937,33.022794 3.767211,3.76721 c 1.122341,1.122341 2.629788,1.613588 4.089151,1.47329 1.135067,-0.109112 2.241089,-0.600361 3.114022,-1.473294 l 3.767212,-3.767212 33.02279,-33.02279 c 1.995275,-1.995275 1.995276,-5.2079026 5e-6,-7.2031741 L 78.51243,1.4965526 c -1.995278,-1.99527858 -5.207905,-1.99527788 -7.20318,-2.9e-6 L 41.88779,30.91801 12.466846,1.4965491 C 11.469209,0.49891195 10.167486,-3.889085e-7 8.8655158,0 Z">
                                 </svg>
@@ -287,7 +297,7 @@
                         <hr class="footer-list-divider">
                         <div class="footer-links-list">
                             <button class="btn expando-list-btn">
-                                <h3 class="smaller-heading">Discover</h3>
+                                <h3 class="heading-smaller">Discover</h3>
                                 <svg class="small-arrow" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 84 51">
                                     <path fill="#555" d="M 8.8655158,0 C 7.5635445,-3.4648209e-7 6.2613056,0.49891153 5.2636681,1.496549 l -3.767212,3.767212 c -1.99527484,1.9952749 -1.99527484,5.207903 2e-7,7.203178 l 33.0227937,33.022794 3.767211,3.76721 c 1.122341,1.122341 2.629788,1.613588 4.089151,1.47329 1.135067,-0.109112 2.241089,-0.600361 3.114022,-1.473294 l 3.767212,-3.767212 33.02279,-33.02279 c 1.995275,-1.995275 1.995276,-5.2079026 5e-6,-7.2031741 L 78.51243,1.4965526 c -1.995278,-1.99527858 -5.207905,-1.99527788 -7.20318,-2.9e-6 L 41.88779,30.91801 12.466846,1.4965491 C 11.469209,0.49891195 10.167486,-3.889085e-7 8.8655158,0 Z">
                                 </svg>
@@ -307,10 +317,10 @@
                         <span class="language-selector-text">Language</span>
                     </button>
                     <section class="author-info">
-                        <h3 class="smaller-heading">About Me</h3>
+                        <h3 class="heading-smaller">About Me</h3>
                         <p>
                         Hello, my name is Arthur Augusto. I'm an aspiring web developer from Brazil, and this project is my take on a travel agency website's landing page.
-                        Check out my <a target="_blank" href="https://www.github.com/">Github</a>.
+                        Check out my <a target="_blank" href="https://github.com/arthur-tsutiya/">Github</a>.
                         </p>
                     </section>
                 </div>
