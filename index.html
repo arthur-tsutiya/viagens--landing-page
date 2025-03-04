@@ -59,11 +59,11 @@
             <section id="trip-me" class="main-section">
                 <div class="container">
                     <div class="section-heading-container">
-                        <h2 class="section-heading">Trip Me</h2>
+                        <h2 class="section-heading">TripMe</h2>
                     </div>
                     <p class="section-desc">Find the perfect destination for you here. Search for a location or take a look at the places we've selected for you!</p>
                         <form method="GET" href="#" id="search-form">
-                            <div id="search-container">
+                            <div class="search-container">
                                 <input id="search-input" type="text" role="search" aria-label="Search for destination" placeholder="Search for a destination">
                                 <button id="search-btn" class="btn btn-transparent btn-rounded">
                                     <svg class="search-svg" xmlns="http://www.w3.org/2000/svg" viewbox="0 -960 720 720">
@@ -195,12 +195,12 @@
                                 </li>
                             </ul>
                             <div class="carousel-controls">
-                                <button id="carousel-btn-previous" class="btn btn-round btn-filled carousel-btn">
+                                <button class="btn btn-round btn-filled carousel-btn carousel-btn-previous">
                                     <svg class="arrow-left" xmlns="http://www.w3.org/2000/svg" viewbox="10 0 54 84">
                                         <path fill="#555" d="m 50.75361,8.8655158 c 0,-1.3019713 -0.498912,-2.6042102 -1.496549,-3.6018477 l -3.767212,-3.767212 c -1.995275,-1.99527484 -5.207903,-1.99527484 -7.203178,2e-7 L 5.263877,34.51925 1.496667,38.286461 c -1.122341,1.122341 -1.613588,2.629788 -1.47329,4.089151 0.109112,1.135067 0.600361,2.241089 1.473294,3.114022 l 3.767212,3.767212 33.02279,33.02279 c 1.995275,1.995275 5.207903,1.995276 7.203174,5e-6 l 3.76721,-3.767211 c 1.995279,-1.995278 1.995278,-5.207905 3e-6,-7.20318 L 19.8356,41.88779 49.257061,12.466846 c 0.997637,-0.997637 1.496549,-2.29936 1.496549,-3.6013302 z">
                                     </svg>
                                 </button>
-                                <button id="carousel-btn-next" class="btn btn-round btn-filled carousel-btn">
+                                <button class="btn btn-round btn-filled carousel-btn carousel-btn-next">
                                     <svg class="arrow-right" xmlns="http://www.w3.org/2000/svg" viewbox="-10 0 51 84">
                                         <path fill="#555" d="M 9.3502182e-7,8.8655158 C 9.3502182e-7,7.5635445 0.49891294,6.2613056 1.4965499,5.2636681 l 3.767212,-3.767212 c 1.995275,-1.99527484 5.2079031,-1.99527484 7.2031781,2e-7 l 33.022794,33.0227937 3.76721,3.767211 c 1.122341,1.122341 1.613588,2.629788 1.47329,4.089151 -0.109112,1.135067 -0.600361,2.241089 -1.473294,3.114022 l -3.767212,3.767212 -33.02279,33.02279 c -1.995275,1.995275 -5.2079031,1.995276 -7.2031741,5e-6 l -3.76721,-3.767211 c -1.99527896,-1.995278 -1.99527796,-5.207905 -3e-6,-7.20318 L 30.918011,41.88779 1.4965499,12.466846 C 0.49891294,11.469209 9.3502182e-7,10.167486 9.3502182e-7,8.8655158 Z">
                                     </svg>
@@ -219,18 +219,66 @@
                     <div class="section-heading-container">
                         <h2 class="section-heading">MeetUs</h2>
                     </div>
-                    <p>Want to meet us personally? </p>
-                    <ul id="agencies-list">
-                        <li>
-                            <img src="./img/office-1.jpg" alt="placeholder">
-                            <div class="agency-content">
-                                <h3 class="heading-smaller">Physical agency #1</h3>
-                                <span class="agency-location">Ficticious Location</span>
-                                <span class="agency-hours">08:00 - 18:00</span>
-                                <button class="btn btn-semitransparent btn-padded btn-rounded">Schedule an appointment</button>
-                            </div>
-                        </li>
-                    </ul>
+                    <p class="section-desc">Want to talk with us in person? </p>
+                    <div class="agencies-list-container carousel-list-container">
+                        <ul id="agencies-list">
+                            <li>
+                                <div class="agency-image-container">
+                                    <img src="./img/office-1.jpg" alt="Modern white office with brown and beige furniture on a high-rise building">
+                                    <span class="photo-author-credit text-small">Photo by <a href="https://www.pexels.com/photo/gray-office-rolling-chair-near-brown-wooden-desk-in-front-of-flat-screen-tv-on-white-painted-wall-37347/" target="_blank">Pixabay</a></span>
+                                </div>
+                                <div class="agency-content">
+                                    <h3 class="heading-smaller">Agency #1</h3>
+                                    <span class="agency-location text-small text-lowlight-1">Fictitious place</span>
+                                    <span class="agency-hours text-small text-lowlight-1">08:00 - 18:00</span>
+                                    <button class="btn btn-semitransparent btn-rounded">
+                                        Schedule visit
+                                    </button>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="agency-image-container">
+                                    <img src="./img/office-2.jpg" alt="Brown coffee table surrounded by four chairs in a lounge area of a building">
+                                    <span class="photo-author-credit text-small">Photo by <a href="https://www.pexels.com/photo/brown-coffee-table-surrounded-by-four-chairs-635041/" target="_blank">Kendall Hoopes</a></span>
+                                </div>
+                                <div class="agency-content">
+                                    <h3 class="heading-smaller">Agency #2</h3>
+                                    <span class="agency-location text-small text-lowlight-1">Fictitious place</span>
+                                    <span class="agency-hours text-small text-lowlight-1">08:00 - 18:00</span>
+
+                                    <button class="btn btn-semitransparent btn-rounded">
+                                        Schedule visit
+                                    </button>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="agency-image-container">
+                                    <img src="./img/office-3.jpg" alt="Silver iMac on a white desk">
+                                    <span class="photo-author-credit text-small">Photo by <a href="https://www.pexels.com/photo/silver-imac-displaying-line-graph-placed-on-desk-572056/" target="_blank">Serpstat</a></span>
+                                </div>
+                                <div class="agency-content">
+                                    <h3 class="heading-smaller">Agency #3</h3>
+                                    <span class="agency-location text-small text-lowlight-1">Fictitious place</span>
+                                    <span class="agency-hours text-small text-lowlight-1">08:00 - 18:00</span>
+                                    <button class="btn btn-semitransparent btn-rounded">
+                                        Schedule visit
+                                    </button>
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="carousel-controls">
+                            <button class="btn btn-round btn-filled carousel-btn carousel-btn-previous" >
+                                <svg class="arrow-left" xmlns="http://www.w3.org/2000/svg" viewbox="10 0 54 84">
+                                    <path fill="#555" d="m 50.75361,8.8655158 c 0,-1.3019713 -0.498912,-2.6042102 -1.496549,-3.6018477 l -3.767212,-3.767212 c -1.995275,-1.99527484 -5.207903,-1.99527484 -7.203178,2e-7 L 5.263877,34.51925 1.496667,38.286461 c -1.122341,1.122341 -1.613588,2.629788 -1.47329,4.089151 0.109112,1.135067 0.600361,2.241089 1.473294,3.114022 l 3.767212,3.767212 33.02279,33.02279 c 1.995275,1.995275 5.207903,1.995276 7.203174,5e-6 l 3.76721,-3.767211 c 1.995279,-1.995278 1.995278,-5.207905 3e-6,-7.20318 L 19.8356,41.88779 49.257061,12.466846 c 0.997637,-0.997637 1.496549,-2.29936 1.496549,-3.6013302 z">
+                                </svg>
+                            </button>
+                            <button class="btn btn-round btn-filled carousel-btn carousel-btn-next">
+                                <svg class="arrow-right" xmlns="http://www.w3.org/2000/svg" viewbox="-10 0 51 84">
+                                    <path fill="#555" d="M 9.3502182e-7,8.8655158 C 9.3502182e-7,7.5635445 0.49891294,6.2613056 1.4965499,5.2636681 l 3.767212,-3.767212 c 1.995275,-1.99527484 5.2079031,-1.99527484 7.2031781,2e-7 l 33.022794,33.0227937 3.76721,3.767211 c 1.122341,1.122341 1.613588,2.629788 1.47329,4.089151 -0.109112,1.135067 -0.600361,2.241089 -1.473294,3.114022 l -3.767212,3.767212 -33.02279,33.02279 c -1.995275,1.995275 -5.2079031,1.995276 -7.2031741,5e-6 l -3.76721,-3.767211 c -1.99527896,-1.995278 -1.99527796,-5.207905 -3e-6,-7.20318 L 30.918011,41.88779 1.4965499,12.466846 C 0.49891294,11.469209 9.3502182e-7,10.167486 9.3502182e-7,8.8655158 Z">
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </section>
             <section id="advice" class="main-section">

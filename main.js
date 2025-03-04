@@ -323,8 +323,8 @@ initialNavbarQuery();
 
 /* Carousel List */
 
-const nextBtn = document.querySelector("#carousel-btn-next");
-const previousBtn = document.querySelector("#carousel-btn-previous");
+const nextBtn = document.querySelector(".carousel-btn-next");
+const previousBtn = document.querySelector(".carousel-btn-previous");
 const carouselList = document.querySelector(".carousel-list");
 
 nextBtn.addEventListener("click", event => {
@@ -385,12 +385,15 @@ function isElementAtScrollBeginVertical(element) {
 }
 
 function isElementAtScrollEndHorizontal(element) {
-    //TODO: Think about this harder
     return Math.abs(Math.floor(element.scrollWidth - element.scrollLeft - element.clientWidth)) <= 1;
 }
 
 function isElementAtScrollEndVertical(element) {
     return Math.abs(Math.floor(element.scrollHeight - element.scrollTop - element.clientHeight)) <= 1;
+}
+
+function elementHasScrollHorizontal(element) {
+    return element.scrollWidth > element.clientWidth;
 }
 
 function isScrollCleared(scrollElement, heightToClear) {
@@ -409,15 +412,18 @@ function debounce(func, timeout = 300) {
 
 const searchForm = document.querySelector("#search-form");
 const searchInput = document.querySelector("#search-input");
+const searchContainer = document.querySelector(".search-container");
 const searchBtn = document.querySelector("#search-btn");
 const searchSvg = document.querySelector(".search-svg");
 
 searchInput.addEventListener("focus", event => {
     searchSvg.classList.add("active-svg");
+    searchContainer.classList.add("active-form");
 });
 
 searchInput.addEventListener("blur", event => {
     searchSvg.classList.remove("active-svg");
+    searchContainer.classList.remove("active-form");
 });
 
 searchBtn.addEventListener("click", event => {
@@ -426,10 +432,12 @@ searchBtn.addEventListener("click", event => {
 
 searchBtn.addEventListener("focus", event => {
     searchSvg.classList.add("active-svg");
+    searchContainer.classList.add("active-form");
 });
 
 searchBtn.addEventListener("blur", event => {
     searchSvg.classList.remove("active-svg");
+    searchContainer.classList.remove("active-form");
 });
 
 /* 'Go to top' buttons */
@@ -508,3 +516,6 @@ function addNavigateUpBtnMobile() {
 }
 
 initializeNavigateUpMobileBtn();
+
+/* MeetUs agency list */
+
