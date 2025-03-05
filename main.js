@@ -1,3 +1,5 @@
+
+
 /* Language selectors */
 
 const languageSelectors = document.querySelectorAll(".language-selector");
@@ -323,6 +325,68 @@ initialNavbarQuery();
 
 /* Carousel List */
 
+const trendingNextBtn = document.querySelector("#trips-trending .carousel-btn-next");
+const trendingPreviousBtn = document.querySelector("#trips-trending .carousel-btn-previous");
+const trendingCarouselList = document.querySelector("#trips-trending .carousel-list");
+
+const agencyNextBtn = document.querySelector("#meet-us .carousel-btn-next");
+const agencyPreviousBtn = document.querySelector("#meet-us .carousel-btn-previous");
+const agencyCarouselList = document.querySelector("#meet-us .carousel-list");
+
+function toggleButtons(carouselElement, nextBtn, prevBtn) {
+    if (!elementHasScrollHorizontal(carouselElement)) {
+        hideElement(nextBtn);
+        hideElement(prevBtn);
+        return;
+    }
+
+    if (isElementAtScrollEndHorizontal(carouselElement)) {
+        hideElement(nextBtn);
+    } else {
+        if (isElementHidden(nextBtn)) {
+            showElement(nextBtn);
+        }
+    }
+
+    if (isElementAtScrollBeginHorizontal(carouselElement)) {
+        hideElement(prevBtn);
+    } else {
+        if (isElementHidden(prevBtn)) {
+            showElement(prevBtn);
+        }
+    }
+}
+
+const toggleButtonsDebounced = debounce(toggleButtons, 50);
+
+initializeCarousel(trendingCarouselList, trendingNextBtn, trendingPreviousBtn);
+initializeCarousel(agencyCarouselList, agencyNextBtn, agencyPreviousBtn);
+
+function initializeCarousel(carouselElement, nextBtn, prevBtn) {
+    nextBtn.addEventListener("click", event => {
+        let currentItemWidth = carouselElement.querySelector(".carousel-item")?.offsetWidth;
+        let currentX = carouselElement.scrollLeft;
+        carouselElement.scrollTo(currentX + currentItemWidth, 0);
+    });
+
+    prevBtn.addEventListener("click", event => {
+        let currentItemWidth = carouselElement.querySelector(".carousel-item")?.offsetWidth;
+        let currentX = carouselElement.scrollLeft;
+        carouselElement.scrollTo(currentX - currentItemWidth, 0);
+    });
+
+    carouselElement.addEventListener("scroll", event => {
+        toggleButtonsDebounced(carouselElement, nextBtn, prevBtn);
+    });
+
+    toggleButtons(carouselElement, nextBtn, prevBtn);
+}
+
+tabletQuery.addEventListener("change", event => {
+    toggleButtons(agencyCarouselList, agencyNextBtn, agencyPreviousBtn);
+});
+
+/*
 const nextBtn = document.querySelector(".carousel-btn-next");
 const previousBtn = document.querySelector(".carousel-btn-previous");
 const carouselList = document.querySelector(".carousel-list");
@@ -331,39 +395,38 @@ nextBtn.addEventListener("click", event => {
     let currentItemWidth = carouselList.querySelector(".carousel-item")?.offsetWidth;
     let currentX = carouselList.scrollLeft;
     carouselList.scrollTo(currentX + currentItemWidth, 0);
-})
+});
 
 previousBtn.addEventListener("click", event => {
     let currentItemWidth = carouselList.querySelector(".carousel-item")?.offsetWidth;
     let currentX = carouselList.scrollLeft;
     carouselList.scrollTo(currentX - currentItemWidth, 0);
-    
-})
+});
 
 const togglePreviousButtonDebounced = debounce(togglePreviousButton, 50);
 
 const toggleNextButtonDebounced = debounce(toggleNextButton, 50);
 
-function toggleNextButton(element, btn) {
-    if(isElementAtScrollEndHorizontal(element)) {
-        btn.classList.add("transparent");
-        btn.classList.add("hidden");
+function toggleNextButton(scrollElement, btn) {
+    if (!elementHasScrollHorizontal(scrollElement)) return;
+
+    if(isElementAtScrollEndHorizontal(scrollElement)) {
+        hideElement(btn);
     } else {
-        if (btn.classList.contains("transparent")) {
-            btn.classList.remove("transparent");
-            btn.classList.remove("hidden");
+        if (isElementHidden(btn)) {
+            showElement(btn);
         }
     }
 }
 
-function togglePreviousButton(element, btn) {
-    if(isElementAtScrollBeginHorizontal(element)) {
-        btn.classList.add("transparent");
-        btn.classList.add("hidden");
+function togglePreviousButton(scrollElement, btn) {
+    if (!elementHasScrollHorizontal(scrollElement)) return;
+
+    if(isElementAtScrollBeginHorizontal(scrollElement)) {
+        hideElement(btn);
     } else {
-        if (btn.classList.contains("transparent")) {
-            btn.classList.remove("transparent");
-            btn.classList.remove("hidden");
+        if (isElementHidden(btn)) {
+            showElement(btn);
         }
     }
 }
@@ -375,6 +438,7 @@ carouselList.addEventListener("scroll", event => {
     togglePreviousButtonDebounced(carouselList, previousBtn);
     toggleNextButtonDebounced(carouselList, nextBtn);
 });
+*/
 
 function isElementAtScrollBeginHorizontal(element) {
     return (element.clientWidth === element.scrollWidth) || (element.scrollLeft === 0);
@@ -407,6 +471,12 @@ function debounce(func, timeout = 300) {
         timer = setTimeout(() => {func.apply(this, args);}, timeout);
     };
 }
+
+/* MeetUs agency list */
+
+
+
+
 
 /* Search Form */
 
@@ -517,5 +587,5 @@ function addNavigateUpBtnMobile() {
 
 initializeNavigateUpMobileBtn();
 
-/* MeetUs agency list */
+
 

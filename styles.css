@@ -717,10 +717,15 @@ footer {
 /* Carousel Control */
 
 .carousel-list-container {
-    width: 90%;
+    width: 95%;
     margin: 0 auto;
     position: relative;
 }
+
+#trip-me .carousel-list-container {
+    width: 90%;
+}
+
 
 .carousel-controls {
     position: absolute;
@@ -736,6 +741,11 @@ footer {
 
 #trips-trending .carousel-controls {
     top: calc(var(--carousel-img-height) / 2);
+    transform: translateY(-50%);
+}
+
+#meet-us .carousel-controls {
+    top: calc(var(--carousel-agency-img-height) / 2);
     transform: translateY(-50%);
 }
 
@@ -780,10 +790,17 @@ footer {
 }
 
 .carousel-item {
-    width: calc((100% - (0 * var(--gap-normal))) / 1);
     flex-grow: 0;
     flex-shrink: 0;
     scroll-snap-align: start;
+}
+
+#trips-trending .carousel-item {
+    width: calc((100% - (0 * var(--gap-normal))) / 1);
+}
+
+#meet-us .carousel-item {
+    width: calc((100% - (0 * var(--gap-normal))) / 1);
 }
 
 .carousel-item-img {
@@ -826,6 +843,94 @@ footer {
     width: 14px;
 }
 
+
+/* MeetUs - Agency locations */
+
+#agencies-list {
+    gap: var(--gap-normal);
+}
+
+#agencies-list li {
+    min-width: 12em;
+    max-width: 30em;
+    /*width: calc((100% - (2 * var(--gap-large))) / 3);*/
+    padding: var(--padding-btn-small);
+}
+
+#agencies-list .carousel-item-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-normal);
+
+    border-radius: 1em;
+    overflow: clip;
+
+    box-shadow: 0px 0px 6px 2px #9995;
+}
+
+#agencies-list-container .carousel-btn-next {
+    margin-right: calc(calc(var(--padding-btn-xlarge) * -1) + var(--padding-btn-small));
+}
+
+#agencies-list-container .carousel-btn-previous {
+    margin-left: calc(calc(var(--padding-btn-xlarge) * -1) + var(--padding-btn-small));
+}
+
+.agency-image-container {
+    position: relative;
+}
+
+.photo-author-credit {
+    position: absolute;
+    bottom: 1em;
+    right: 1em;
+
+    padding: .75em;
+    background-color: #3336;
+    transition: background-color 200ms linear;
+    border-radius: 2em;
+    color: white;
+}
+
+.photo-author-credit:hover {
+    background-color: #333a;
+}
+
+
+#agencies-list img {
+    width: 100%;
+    height: auto;
+    min-height: 10em;
+    max-height: 15em;
+    object-fit: cover;
+    object-position: center;
+    /*height: var(--carousel-agency-img-height);*/
+}
+
+.agency-content {
+    padding: 0 1em 1em 1em;
+    display:flex;
+    flex-direction: column;
+    gap: .5em;
+}
+
+.agency-content button {
+    align-self: stretch;
+    max-width: 30em;
+    margin-top: 1em;
+
+    display: flex;
+    gap: var(--gap-normal);
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+
+    padding: .75em;
+}
+
+.photo-author-credit a{
+    font-weight: bold;
+}
 
 /* TripMe - Search bar*/
 
@@ -954,95 +1059,6 @@ legend {
     margin-left: auto;
 }
 
-/* MeetUs - Agency locations */
-
-#agencies-list {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: var(--gap-large);
-    padding: .5em;
-
-   /* overflow-x: scroll;*/
-    scrollbar-width: none;
-}
-
-#agencies-list li {
-    min-width: 15em;
-    max-width: 25em;
-    flex-grow: 0;
-    flex-shrink: 1;
-    display: flex;
-    flex-direction: column;
-    gap: var(--gap-normal);
-    
-
-    border-radius: 1em;
-   /* padding-bottom: var(--padding-btn-small);*/
-    overflow: clip;
-
-    box-shadow: 0px 0px 6px 2px #9995;
-}
-
-.agency-image-container {
-    position: relative;
-}
-
-.photo-author-credit {
-    position: absolute;
-    bottom: 1em;
-    right: 1em;
-
-    padding: .75em;
-    background-color: #3336;
-    transition: background-color 200ms linear;
-    border-radius: 2em;
-    color: white;
-}
-
-.photo-author-credit:hover {
-    background-color: #333a;
-}
-
-
-#agencies-list img {
-    width: 100%;
-    object-fit: cover;
-    object-position: center;
-    height: var(--carousel-agency-img-height);
-}
-
-.agency-content {
-    padding: 0 1em 1em 1em;
-    display:flex;
-    flex-direction: column;
-    gap: .5em;
-}
-
-.agency-content button {
-    align-self: stretch;
-    max-width: 30em;
-    margin-top: 1em;
-
-    display: flex;
-    gap: var(--gap-normal);
-    align-items: center;
-    justify-content: center;
-    white-space: nowrap;
-
-    padding: .75em;
-}
-
-.photo-author-credit a{
-    font-weight: bold;
-}
-/*
-.agency-content svg {
-    height: 24px;
-    width: 24px;
-    fill: var(--font-color);
-}*/
-
 /* General states */
 
 .hidden {
@@ -1107,8 +1123,9 @@ legend {
 
 @media (min-width: 25em) {
 
-    .carousel-list-container {
+    #trip-me .carousel-list-container {
         width: 95%;
+        margin: 0 auto;
     }
 
     #navbar-inner {
@@ -1119,19 +1136,33 @@ legend {
         padding-inline: 2em;
     }
 
-    .carousel-item {
+    #trips-trending .carousel-item {
         width: calc((100% - (1 * var(--gap-normal))) / 2);
     }
 
 }
 
+@media (min-width: 35em) {
+    #meet-us .carousel-item {
+        width: calc((100% - (1 * var(--gap-normal))) / 2);
+    }
+}
+
 @media (min-width: 48em) {
-    .carousel-list-container {
-        margin: 0;
+    
+    #trip-me .carousel-list-container,
+    #meet-us .carousel-list-container {
+        margin: 0 auto;
         width: 100%;
     }
 
-    .carousel-item {
+
+        
+    #trips-trending .carousel-item {
+        width: calc((100% - (2 * var(--gap-normal))) / 3);
+    }
+
+    #meet-us .carousel-item {
         width: calc((100% - (2 * var(--gap-normal))) / 3);
     }
 }
@@ -1150,7 +1181,7 @@ legend {
         order: 0;
     }
 
-    .carousel-item {
+    #trips-trending .carousel-item {
         width: calc((100% - (3 * var(--gap-normal))) / 4);
     }
 }
@@ -1160,14 +1191,14 @@ legend {
         display: inline;
     }
 
-    .carousel-item {
+    #trips-trending .carousel-item {
         width: calc((100% - (4 * var(--gap-normal))) / 5);
     }
 
 }
 
 @media (min-width: 100em) {
-    .carousel-item {
+    #trips-trending .carousel-item {
         width: calc((100% - (5 * var(--gap-normal))) / 6);
         max-width: 30em;
     }
