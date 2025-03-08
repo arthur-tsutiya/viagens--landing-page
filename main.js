@@ -45,17 +45,6 @@ function changeLanguageFlag(languageObj) {
 }
 
 
-// Hack to avoid jarring transition when modal box appears/disappears (still WIP).
-const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
-function toggleRightPadding() {
-    if (!scrollbarWidth) return;
-
-    if (document.body.style.paddingRight === "") {
-        document.body.style.paddingRight = `${scrollbarWidth}px`;
-    } else {
-        document.body.style.paddingRight = "";
-    }
-}
 
 /* Language form */
 
