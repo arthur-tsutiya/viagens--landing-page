@@ -5,6 +5,7 @@
 
 :root {
     --max-width-large-window: 50em;
+    --gap-xsmall: .25em;
     --gap-small: .5em;
     --gap-normal: 1em;
     --gap-large: 2em;
@@ -586,6 +587,10 @@ footer .language-selector {
     font-weight: bold;
 }
 
+.img-credit a:hover {
+    text-decoration: underline;
+}
+
 
 /* Footer */
 
@@ -749,6 +754,11 @@ footer {
     transform: translateY(-50%);
 }
 
+#advice .carousel-controls {
+    top: 50%;
+    transform: translateY(-50%);
+}
+
 .carousel-btn {
     padding: var(--padding-btn-normal);
     box-shadow: 0px 0px 2px 2px #3331;
@@ -853,7 +863,6 @@ footer {
 #agencies-list li {
     min-width: 12em;
     max-width: 30em;
-    /*width: calc((100% - (2 * var(--gap-large))) / 3);*/
     padding: var(--padding-btn-small);
 }
 
@@ -896,6 +905,9 @@ footer {
     background-color: #333a;
 }
 
+.photo-author-credit a:hover {
+    text-decoration: underline;
+}
 
 #agencies-list img {
     width: 100%;
@@ -932,6 +944,116 @@ footer {
     font-weight: bold;
 }
 
+/* Advice section =========================================================*/ 
+
+#advice-list li {
+    max-width: 30em;
+    min-width: 14em;
+    width: calc((100% - (0 * var(--gap-normal))) / 1);
+
+    position: relative;
+}
+
+#advice .carousel-list-container {
+    width: 90%;
+}
+
+.advice-img {
+    height: auto;
+    aspect-ratio: 3 / 2;
+    min-height: 20em;
+}
+
+.advice-img-container {
+    position: relative;
+    border-radius: 1em;
+    overflow: clip;
+    display: flex;
+    align-items: stretch;
+
+    
+}
+.advice-img-overlay {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    height: 100%;
+    width: 100%;
+    background-image: linear-gradient(180deg,#3330, #3330 20%, #333e 100%);
+    opacity: 0.8;
+    transition: opacity 100ms linear;
+
+}
+
+.advice-img-overlay:hover {
+    opacity: 1;
+}
+
+.advice-text {
+    position: absolute;
+    bottom: 1em;
+    width: 100%;
+    padding-inline: 1em;
+    gap: 0;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    pointer-events: none;
+}
+
+.advice-text > .advice-img-credit {
+    pointer-events: all;
+}
+
+.advice-img-credit a:hover {
+    text-decoration: underline;
+}
+
+.advice-text {
+    color: white;
+    font-weight: normal;
+}
+
+.advice-text h3 {
+    color: white;
+    margin-bottom: var(--gap-small);
+}
+
+.advice-text a {
+    font-weight: bold;
+}
+
+.advice-more-link {
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+    background-color: #3331;
+    border-radius: 1em;
+
+    transition: background-color 200ms linear;
+    font-weight: bold;
+}
+
+.advice-more-link:hover {
+    background-color: #3333;
+}
+
+.advice-more-link a {
+    cursor: pointer;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.advice-more-link a:hover, 
+.advice-more-link a:focus {
+    text-decoration: underline;
+}
+
 /* TripMe - Search bar*/
 
 .section-subheading {
@@ -954,7 +1076,7 @@ footer {
 }
 
 .main-section {
-    margin-top: 4em;
+    margin-block: 4em;
 }
 
 #search-input {
@@ -1122,8 +1244,8 @@ legend {
 }
 
 @media (min-width: 25em) {
-
-    #trip-me .carousel-list-container {
+    #trip-me .carousel-list-container,
+    #advice .carousel-list-container {
         width: 95%;
         margin: 0 auto;
     }
@@ -1146,23 +1268,33 @@ legend {
     #meet-us .carousel-item {
         width: calc((100% - (1 * var(--gap-normal))) / 2);
     }
+
+    #advice .carousel-item {
+        width: calc((100% - (1 * var(--gap-normal))) / 2);
+    }
 }
 
 @media (min-width: 48em) {
     
     #trip-me .carousel-list-container,
-    #meet-us .carousel-list-container {
+    #meet-us .carousel-list-container, 
+    #advice .carousel-list-container {
         margin: 0 auto;
         width: 100%;
     }
 
 
-        
     #trips-trending .carousel-item {
         width: calc((100% - (2 * var(--gap-normal))) / 3);
     }
 
     #meet-us .carousel-item {
+        width: calc((100% - (2 * var(--gap-normal))) / 3);
+    }
+}
+
+@media (min-width: 56em) {
+    #advice .carousel-item {
         width: calc((100% - (2 * var(--gap-normal))) / 3);
     }
 }
@@ -1201,5 +1333,9 @@ legend {
     #trips-trending .carousel-item {
         width: calc((100% - (5 * var(--gap-normal))) / 6);
         max-width: 30em;
+    }
+
+    #advice .carousel-item {
+        width: calc((100% - (3 * var(--gap-normal))) / 4);
     }
 }

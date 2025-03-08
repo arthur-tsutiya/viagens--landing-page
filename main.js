@@ -333,6 +333,10 @@ const agencyNextBtn = document.querySelector("#meet-us .carousel-btn-next");
 const agencyPreviousBtn = document.querySelector("#meet-us .carousel-btn-previous");
 const agencyCarouselList = document.querySelector("#meet-us .carousel-list");
 
+const adviceNextBtn = document.querySelector("#advice .carousel-btn-next");
+const advicePreviousBtn = document.querySelector("#advice .carousel-btn-previous");
+const adviceCarouselList = document.querySelector("#advice .carousel-list");
+
 function toggleButtons(carouselElement, nextBtn, prevBtn) {
     if (!elementHasScrollHorizontal(carouselElement)) {
         hideElement(nextBtn);
@@ -361,6 +365,7 @@ const toggleButtonsDebounced = debounce(toggleButtons, 50);
 
 initializeCarousel(trendingCarouselList, trendingNextBtn, trendingPreviousBtn);
 initializeCarousel(agencyCarouselList, agencyNextBtn, agencyPreviousBtn);
+initializeCarousel(adviceCarouselList, adviceNextBtn, advicePreviousBtn);
 
 function initializeCarousel(carouselElement, nextBtn, prevBtn) {
     nextBtn.addEventListener("click", event => {
@@ -385,60 +390,6 @@ function initializeCarousel(carouselElement, nextBtn, prevBtn) {
 tabletQuery.addEventListener("change", event => {
     toggleButtons(agencyCarouselList, agencyNextBtn, agencyPreviousBtn);
 });
-
-/*
-const nextBtn = document.querySelector(".carousel-btn-next");
-const previousBtn = document.querySelector(".carousel-btn-previous");
-const carouselList = document.querySelector(".carousel-list");
-
-nextBtn.addEventListener("click", event => {
-    let currentItemWidth = carouselList.querySelector(".carousel-item")?.offsetWidth;
-    let currentX = carouselList.scrollLeft;
-    carouselList.scrollTo(currentX + currentItemWidth, 0);
-});
-
-previousBtn.addEventListener("click", event => {
-    let currentItemWidth = carouselList.querySelector(".carousel-item")?.offsetWidth;
-    let currentX = carouselList.scrollLeft;
-    carouselList.scrollTo(currentX - currentItemWidth, 0);
-});
-
-const togglePreviousButtonDebounced = debounce(togglePreviousButton, 50);
-
-const toggleNextButtonDebounced = debounce(toggleNextButton, 50);
-
-function toggleNextButton(scrollElement, btn) {
-    if (!elementHasScrollHorizontal(scrollElement)) return;
-
-    if(isElementAtScrollEndHorizontal(scrollElement)) {
-        hideElement(btn);
-    } else {
-        if (isElementHidden(btn)) {
-            showElement(btn);
-        }
-    }
-}
-
-function togglePreviousButton(scrollElement, btn) {
-    if (!elementHasScrollHorizontal(scrollElement)) return;
-
-    if(isElementAtScrollBeginHorizontal(scrollElement)) {
-        hideElement(btn);
-    } else {
-        if (isElementHidden(btn)) {
-            showElement(btn);
-        }
-    }
-}
-
-toggleNextButton(carouselList, nextBtn);
-togglePreviousButton(carouselList, previousBtn);
-
-carouselList.addEventListener("scroll", event => {
-    togglePreviousButtonDebounced(carouselList, previousBtn);
-    toggleNextButtonDebounced(carouselList, nextBtn);
-});
-*/
 
 function isElementAtScrollBeginHorizontal(element) {
     return (element.clientWidth === element.scrollWidth) || (element.scrollLeft === 0);
@@ -471,11 +422,6 @@ function debounce(func, timeout = 300) {
         timer = setTimeout(() => {func.apply(this, args);}, timeout);
     };
 }
-
-/* MeetUs agency list */
-
-
-
 
 
 /* Search Form */
@@ -529,9 +475,12 @@ function hideElement(element) {
 const navigateUpBtnMobileHTML = document.querySelector(".navigate-top-btn-mobile").outerHTML;
 const navigateUpBtnHTML = `<a class="navigate-top-btn btn btn-transparent btn-rounded btn-padded" href="#main-content">Go to top</a>`;
 
-const toggleNavigateUpBtnMobile = debounce(() => {
+const toggleNavigateUpBtnMobileDebounced = debounce(() => {
     const heightToClear = document.querySelector(".navbar").clientHeight;
     const navigateUpBtnMobile = document.querySelector(".navigate-top-btn-mobile");
+
+    // In case navigateUpBtnMobile is removed right before this function is called because the user resized the window or viewport changed.
+     if (!navigateUpBtnMobile) return;
 
     if (!isScrollCleared(document.documentElement, heightToClear)) {
         if (!isElementHidden(navigateUpBtnMobile)) {
@@ -557,7 +506,7 @@ function initializeNavigateUpMobileBtn() {
     if (tabletQuery.matches) {
         removeNavigateUpBtnMobile();
     } else {
-        window.addEventListener("scroll", toggleNavigateUpBtnMobile);
+        window.addEventListener("scroll", toggleNavigateUpBtnMobileDebounced);
     }
 }
 
@@ -570,7 +519,7 @@ function removeNavigateUpBtnMobile() {
         containers.insertAdjacentHTML("beforeend", navigateUpBtnHTML);
     });
 
-    window.removeEventListener("scroll", toggleNavigateUpBtnMobile);
+    window.removeEventListener("scroll", toggleNavigateUpBtnMobileDebounced);
 }
 
 function addNavigateUpBtnMobile() {
@@ -582,7 +531,7 @@ function addNavigateUpBtnMobile() {
         btn.remove();
     });
 
-    window.addEventListener("scroll", toggleNavigateUpBtnMobile);
+    window.addEventListener("scroll", toggleNavigateUpBtnMobileDebounced);
 }
 
 initializeNavigateUpMobileBtn();
